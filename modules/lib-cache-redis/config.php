@@ -31,8 +31,20 @@ return [
     ],
     '__inject' => [
         [
+            'name' => 'libCache',
+            'question' => 'cache driver setter',
+            'children' => [
+                [
+                    'name' => 'driver',
+                    'question' => 'Set driver to redis',
+                    'default' => 'redis',
+                    'rule' => 'any'
+                ]
+            ]
+        ],
+        [
             'name' => 'libRedis',
-            'question' => 'lib-redis app config',
+            'question' => 'lib-cache-redis app config',
             'children' => [
                 [
                     'name' => 'cache',
