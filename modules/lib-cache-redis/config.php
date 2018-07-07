@@ -29,6 +29,51 @@ return [
         ],
         'optional' => []
     ],
+    '__inject' => [
+        [
+            'name' => 'libRedis',
+            'question' => 'lib-redis app config',
+            'children' => [
+                [
+                    'name' => 'cache',
+                    'children' => [
+                        [
+                            'name' => 'socket',
+                            'question' => 'Connection socket',
+                            'rule' => 'any'
+                        ],
+                        [
+                            'name' => 'host',
+                            'question' => 'Connection hostname',
+                            'default' => '127.0.0.1',
+                            'rule' => 'any'
+                        ],
+                        [
+                            'name' => 'port',
+                            'question' => 'Connection port number',
+                            'default' => '6379',
+                            'rule' => 'any'
+                        ],
+                        [
+                            'name' => 'password',
+                            'question' => 'Connection password',
+                            'rule' => 'any'
+                        ],
+                        [
+                            'name' => 'db',
+                            'question' => 'DB Index',
+                            'rule' => 'number'
+                        ],
+                        [
+                            'name' => 'prefix',
+                            'question' => 'Key prefix',
+                            'rule' => 'any'
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ],
     'autoload' => [
         'classes' => [
             'LibCacheRedis\\Driver' => [
