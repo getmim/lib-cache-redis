@@ -49,3 +49,26 @@ return [
     ]
 ];
 ```
+
+## Penting
+
+Walaupun cache dengan redis terkesan sangat cepat ( karena mindset dari yang sudah-sudah ),
+bukan berarti kondisi seperti ini berlaku di framework mim. Perlu diketahui bahwa speed cache
+build-in dibuat dengan mengedepankan speed sehingga sangat optimize. Di bawah ini adalah
+perbandingan ab test antara cache dengan driver file ( build-in `lib-cache` ) dengan cache
+dengan media penyimpanan redis:
+
+```
+ab -n2000 -c100 http://site.mim/
+```
+
+Info                             | File    | Redis   | Redis (pconnect)
+---------------------------------|---------|---------|-----------------
+Time taken for tests ( seconds ) | 0.273   | 0.390   | 0.339
+Requests per second ( [#/sec] )  | 7331.27 | 5127.71 | 5894.25
+Time per request ( [ms] )        | 13.640  | 19.502  | 16.966
+Transfer rate ( [Kbytes/sec] )   | 1081.08 | 756.14  | 869.17
+
+Perhatikan bahwa walaupun redis menggunakan persistant connection, masih tetap
+tidak bisa melewati kecepatan cache dengan file. Kondisi terakhir yang perlu
+dipertimbangkan adalah I/O server.
