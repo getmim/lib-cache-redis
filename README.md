@@ -12,10 +12,6 @@ Jalankan perintah di bawah di folder aplikasi:
 mim app install lib-cache-redis
 ```
 
-Intalasi module ini akan menyediakan cache dengan driver file. Untuk
-dukungan cache driver redis, atau yang lainnya, silahkan instal module
-yang bersangkutan.
-
 ## penggunaan
 
 Dikarenakan module ini adalah module addons untuk `lib-cache`, maka penggunaan
